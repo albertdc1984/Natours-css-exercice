@@ -30,21 +30,3 @@
     </header>
   </body>
 </html>
-<script>
-  function fetchApi(element) {
-    const filters = JSON.parse(element.dataset.filters);
-    const filtersString = new URLSearchParams(filters).toString();
-    let currentPage = 1;
-    while (`${API_URL}/room_slots?${filtersString}?page=${currentPage}`) {
-      fetch(`${API_URL}/room_slots?${filtersString}?page=${currentPage}`, {
-        headers: { Accept: "application/json" },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          renderData(element, data);
-        });
-      currentPage++;
-    }
-    postFetchApi(element);
-  }
-</script>
