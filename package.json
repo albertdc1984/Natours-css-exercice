@@ -4,7 +4,12 @@
   "description": "This is my version of the 1st exercice in Udemy's Advanced CSS and Sass course by Jonas Schmedtmann",
   "main": "index.js",
   "scripts": {
-    "compile": "node-sass sass/main.scss css/style.css -w"
+    "watch": "node-sass sass/main.scss css/style.css -w",
+    "compile": "node-sass sass/main.scss css/style.comp.css",
+    "concat": "concat -o css/style.concat.css css/icon-style.css css/style.comp.css",
+    "prefix": "postcss --use autoprefixer -b 'last 5 versions' css/style.concat.css -o css/style.prefix.css",
+    "compress": "node-sass css/style.prefix.css css/style.css --output-style compressed",
+    "build": "npm-run-all compile concat prefix compress"
   },
   "repository": {
     "type": "git",
@@ -17,6 +22,9 @@
   },
   "homepage": "https://github.com/albertdc1984/natours-css-exercice#readme",
   "devDependencies": {
-    "node-sass": "^8.0.0"
+    "autoprefixer": "^10.4.13",
+    "concat": "^1.0.3",
+    "node-sass": "^8.0.0",
+    "postcss-cli": "^10.1.0"
   }
 }
